@@ -8,33 +8,38 @@ export default function EvaluationResultCard({ result, onReset }) {
   const isHighMatch = score >= 80;
   const isMediumMatch = score >= 60 && score < 80;
 
-  const scoreColor = isHighMatch ? '#10b981' : isMediumMatch ? '#f59e0b' : '#ef4444';
+  const scoreColor = isHighMatch ? '#059669' : isMediumMatch ? '#d97706' : '#dc2626';
   const scoreBadgeBg = isHighMatch
-    ? 'rgba(16, 185, 129, 0.15)'
+    ? 'rgba(16, 185, 129, 0.12)'
     : isMediumMatch
-    ? 'rgba(245, 158, 11, 0.15)'
-    : 'rgba(239, 68, 68, 0.15)';
+    ? 'rgba(245, 158, 11, 0.12)'
+    : 'rgba(239, 68, 68, 0.12)';
 
   return (
-    <div className="glass-panel p-4 mb-4 border border-secondary border-opacity-30">
+    <div className="glass-panel p-4 mb-4">
       {/* Top Banner */}
-      <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 pb-3 mb-3 border-bottom border-secondary border-opacity-20">
+      <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 pb-3 mb-3 border-bottom" style={{ borderColor: '#e2e8f0' }}>
         <div className="d-flex align-items-center gap-2">
           <div className="p-2 rounded-circle" style={{ background: scoreBadgeBg, color: scoreColor }}>
             <Award size={24} />
           </div>
           <div>
-            <h5 className="fw-bold text-white mb-0">AI Candidate Evaluation Complete</h5>
-            <span className="text-secondary small">
-              Evaluated against <span className="text-white fw-semibold">{result.jobTitle || 'Target Role'}</span>
+            <h5 className="fw-bold mb-0" style={{ color: '#0f172a' }}>AI Candidate Evaluation Complete</h5>
+            <span className="small" style={{ color: '#64748b' }}>
+              Evaluated against <span className="fw-semibold" style={{ color: '#0f172a' }}>{result.jobTitle || 'Target Role'}</span>
             </span>
           </div>
         </div>
 
         <button
           onClick={onReset}
-          className="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1 text-white border-secondary"
-          style={{ fontSize: '0.78rem' }}
+          className="btn btn-sm d-flex align-items-center gap-1 shadow-sm"
+          style={{
+            fontSize: '0.78rem',
+            background: '#ffffff',
+            border: '1px solid #cbd5e1',
+            color: '#334155'
+          }}
         >
           <RefreshCw size={13} />
           <span>Screen Another Resume</span>
@@ -45,16 +50,16 @@ export default function EvaluationResultCard({ result, onReset }) {
         {/* Score Meter Column */}
         <div className="col-md-4 text-center">
           <div
-            className="p-4 rounded-4 d-inline-flex flex-column align-items-center justify-content-center"
+            className="p-4 rounded-4 d-inline-flex flex-column align-items-center justify-content-center shadow-sm"
             style={{
-              background: '#0b1120',
+              background: '#ffffff',
               border: `2px solid ${scoreColor}`,
               minWidth: '180px',
               minHeight: '180px',
-              boxShadow: `0 0 30px ${scoreColor}33`
+              boxShadow: `0 10px 30px -5px ${scoreColor}22`
             }}
           >
-            <span className="text-secondary small fw-bold text-uppercase tracking-wider">
+            <span className="small fw-bold text-uppercase tracking-wider" style={{ color: '#64748b' }}>
               Match Score
             </span>
             <div className="display-4 fw-bold my-1" style={{ color: scoreColor }}>
@@ -71,17 +76,17 @@ export default function EvaluationResultCard({ result, onReset }) {
 
         {/* Executive Summary Column */}
         <div className="col-md-8">
-          <div className="p-3 rounded-3" style={{ background: '#0b1120', border: '1px solid rgba(255,255,255,0.06)' }}>
-            <div className="fw-bold text-white small mb-2 d-flex align-items-center gap-2">
-              <Sparkles size={14} className="text-warning" />
+          <div className="p-3 rounded-3" style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}>
+            <div className="fw-bold small mb-2 d-flex align-items-center gap-2" style={{ color: '#0f172a' }}>
+              <Sparkles size={14} style={{ color: '#7c3aed' }} />
               <span>Executive Feedback Summary</span>
             </div>
-            <p className="text-secondary small mb-0" style={{ lineHeight: 1.6, fontSize: '0.85rem' }}>
+            <p className="small mb-0" style={{ color: '#334155', lineHeight: 1.6, fontSize: '0.88rem' }}>
               {result.feedback}
             </p>
           </div>
 
-          <div className="mt-3 d-flex flex-wrap align-items-center gap-3 text-secondary small code-font" style={{ fontSize: '0.72rem' }}>
+          <div className="mt-3 d-flex flex-wrap align-items-center gap-3 small code-font" style={{ color: '#64748b', fontSize: '0.75rem' }}>
             <span>ID: {result.evaluationId || 'N/A'}</span>
             <span>&bull;</span>
             <span className="d-flex align-items-center gap-1">
@@ -96,16 +101,16 @@ export default function EvaluationResultCard({ result, onReset }) {
       <div className="row g-3">
         {result.strengths && result.strengths.length > 0 && (
           <div className="col-md-6">
-            <div className="p-3 rounded-3 h-100" style={{ background: 'rgba(16, 185, 129, 0.06)', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
-              <div className="fw-bold text-success small mb-2 d-flex align-items-center gap-2">
+            <div className="p-3 rounded-3 h-100" style={{ background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.25)' }}>
+              <div className="fw-bold small mb-2 d-flex align-items-center gap-2" style={{ color: '#059669' }}>
                 <CheckCircle2 size={15} />
                 <span>Identified Strengths &amp; Proficiencies</span>
               </div>
-              <ul className="list-unstyled mb-0 small text-secondary">
+              <ul className="list-unstyled mb-0 small">
                 {result.strengths.map((str, idx) => (
-                  <li key={idx} className="mb-2 d-flex align-items-start gap-2" style={{ fontSize: '0.8rem' }}>
-                    <span className="text-success">&bull;</span>
-                    <span className="text-light">{str}</span>
+                  <li key={idx} className="mb-2 d-flex align-items-start gap-2" style={{ fontSize: '0.82rem', color: '#1e293b' }}>
+                    <span style={{ color: '#059669' }}>&bull;</span>
+                    <span>{str}</span>
                   </li>
                 ))}
               </ul>
@@ -115,16 +120,16 @@ export default function EvaluationResultCard({ result, onReset }) {
 
         {result.gaps && result.gaps.length > 0 && (
           <div className="col-md-6">
-            <div className="p-3 rounded-3 h-100" style={{ background: 'rgba(245, 158, 11, 0.06)', border: '1px solid rgba(245, 158, 11, 0.2)' }}>
-              <div className="fw-bold text-warning small mb-2 d-flex align-items-center gap-2">
+            <div className="p-3 rounded-3 h-100" style={{ background: 'rgba(245, 158, 11, 0.05)', border: '1px solid rgba(245, 158, 11, 0.25)' }}>
+              <div className="fw-bold small mb-2 d-flex align-items-center gap-2" style={{ color: '#d97706' }}>
                 <AlertTriangle size={15} />
                 <span>Areas for Clarification / Missing Gaps</span>
               </div>
-              <ul className="list-unstyled mb-0 small text-secondary">
+              <ul className="list-unstyled mb-0 small">
                 {result.gaps.map((gap, idx) => (
-                  <li key={idx} className="mb-2 d-flex align-items-start gap-2" style={{ fontSize: '0.8rem' }}>
-                    <span className="text-warning">&bull;</span>
-                    <span className="text-light">{gap}</span>
+                  <li key={idx} className="mb-2 d-flex align-items-start gap-2" style={{ fontSize: '0.82rem', color: '#1e293b' }}>
+                    <span style={{ color: '#d97706' }}>&bull;</span>
+                    <span>{gap}</span>
                   </li>
                 ))}
               </ul>

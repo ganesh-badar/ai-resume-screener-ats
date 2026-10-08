@@ -112,7 +112,7 @@ export default function App() {
   };
 
   return (
-    <div className="d-flex flex-column min-vh-100" style={{ background: '#070b14' }}>
+    <div className="d-flex flex-column min-vh-100" style={{ background: '#f8fafc' }}>
       <Navbar
         isBackendLive={isBackendLive}
         onOpenArchitecture={() => setIsArchModalOpen(true)}
@@ -121,16 +121,22 @@ export default function App() {
       <main className="container py-4 flex-grow-1">
         {/* Hero Section */}
         <div className="text-center py-4 mb-3">
-          <div className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill brand-badge small mb-3">
+          <div className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill brand-badge small mb-3 shadow-sm">
             <Sparkles size={14} />
-            <span>AI-Powered Resume Screener &amp; Real-Time ATS</span>
+            <span>Enterprise AI-Powered Resume Screener &amp; Real-Time ATS</span>
           </div>
-          <h1 className="display-6 fw-bold text-white mb-2">
-            Automated Candidate Screening with <span style={{ background: 'var(--brand-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Zero Thread Starvation</span>
+          <h1 className="display-6 fw-bold mb-2" style={{ color: '#0f172a' }}>
+            Automated Candidate Screening with{' '}
+            <span style={{ background: 'var(--brand-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              Zero Thread Starvation
+            </span>
           </h1>
-          <p className="text-secondary mx-auto" style={{ maxWidth: '720px', fontSize: '0.95rem' }}>
-            Combines <strong>Spring Boot 3</strong> asynchronous ingestion (<code className="text-warning">HTTP 202 Accepted</code>),
-            bounded thread pooling (<code className="text-info">@Async</code>), and <strong>Server-Sent Events (SSE)</strong> for instant UI updates powered by OpenAI.
+          <p className="mx-auto" style={{ maxWidth: '720px', fontSize: '0.98rem', color: '#475569', lineHeight: 1.6 }}>
+            Combines <strong style={{ color: '#0f172a' }}>Spring Boot 3</strong> asynchronous ingestion (
+            <code style={{ background: '#fef3c7', color: '#b45309', padding: '2px 6px', borderRadius: '4px', fontSize: '0.85em' }}>HTTP 202 Accepted</code>
+            ), bounded thread pooling (
+            <code style={{ background: '#e0f2fe', color: '#0369a1', padding: '2px 6px', borderRadius: '4px', fontSize: '0.85em' }}>@Async</code>
+            ), and <strong style={{ color: '#0f172a' }}>Server-Sent Events (SSE)</strong> for instant UI updates powered by OpenAI.
           </p>
 
           {/* Optional Live OpenAI Key Toggle */}
@@ -138,29 +144,34 @@ export default function App() {
             <button
               type="button"
               onClick={() => setShowKeyInput(!showKeyInput)}
-              className="btn btn-sm btn-outline-secondary py-1 px-3 rounded-pill text-secondary d-flex align-items-center gap-1"
-              style={{ fontSize: '0.72rem', borderColor: 'rgba(255,255,255,0.1)' }}
+              className="btn btn-sm py-1 px-3 rounded-pill d-flex align-items-center gap-1 shadow-sm"
+              style={{
+                fontSize: '0.74rem',
+                background: '#ffffff',
+                border: '1px solid #cbd5e1',
+                color: '#475569'
+              }}
             >
               <Zap size={12} className={openAiApiKey ? "text-success" : "text-warning"} />
               <span>{openAiApiKey ? "Custom OpenAI Key Active" : "Use Custom OpenAI Key (Optional)"}</span>
             </button>
 
             {showKeyInput && (
-              <div className="mt-2 p-2 rounded-3 d-flex align-items-center gap-2" style={{ background: '#0d1527', border: '1px solid rgba(255,255,255,0.1)', maxWidth: '400px' }}>
+              <div className="mt-2 p-2 rounded-3 d-flex align-items-center gap-2 shadow-sm" style={{ background: '#ffffff', border: '1px solid #cbd5e1', maxWidth: '420px', width: '100%' }}>
                 <input
                   type="password"
                   placeholder="sk-proj-..."
                   value={openAiApiKey}
                   onChange={(e) => handleSaveApiKey(e.target.value)}
                   className="form-control form-control-sm custom-input"
-                  style={{ fontSize: '0.75rem' }}
+                  style={{ fontSize: '0.78rem' }}
                 />
                 {openAiApiKey && (
                   <button
                     type="button"
                     onClick={() => handleSaveApiKey('')}
                     className="btn btn-sm btn-outline-danger py-0 px-2 small"
-                    style={{ fontSize: '0.7rem' }}
+                    style={{ fontSize: '0.72rem' }}
                   >
                     Clear
                   </button>
@@ -202,10 +213,10 @@ export default function App() {
           <div className="col-md-4">
             <div className="glass-panel p-3 h-100">
               <div className="d-flex align-items-center gap-2 mb-1">
-                <Cpu size={16} className="text-primary-accent" style={{ color: '#818cf8' }} />
-                <h6 className="fw-bold text-white mb-0 small">Asynchronous Request-Reply</h6>
+                <Cpu size={16} style={{ color: '#4f46e5' }} />
+                <h6 className="fw-bold mb-0 small" style={{ color: '#0f172a' }}>Asynchronous Request-Reply</h6>
               </div>
-              <p className="text-secondary small mb-0" style={{ fontSize: '0.78rem' }}>
+              <p className="small mb-0" style={{ color: '#64748b', fontSize: '0.8rem', lineHeight: 1.5 }}>
                 Returns 202 Accepted instantly; offloads LLM inference to a bounded ThreadPoolTaskExecutor.
               </p>
             </div>
@@ -214,9 +225,9 @@ export default function App() {
             <div className="glass-panel p-3 h-100">
               <div className="d-flex align-items-center gap-2 mb-1">
                 <Activity size={16} className="text-success" />
-                <h6 className="fw-bold text-white mb-0 small">Unidirectional SSE Streaming</h6>
+                <h6 className="fw-bold mb-0 small" style={{ color: '#0f172a' }}>Unidirectional SSE Streaming</h6>
               </div>
-              <p className="text-secondary small mb-0" style={{ fontSize: '0.78rem' }}>
+              <p className="small mb-0" style={{ color: '#64748b', fontSize: '0.8rem', lineHeight: 1.5 }}>
                 Streams status updates directly to React EventSource without WebSocket handshake overhead.
               </p>
             </div>
@@ -224,10 +235,10 @@ export default function App() {
           <div className="col-md-4">
             <div className="glass-panel p-3 h-100">
               <div className="d-flex align-items-center gap-2 mb-1">
-                <ShieldCheck size={16} className="text-info" />
-                <h6 className="fw-bold text-white mb-0 small">Apache PDFBox 3.x Extraction</h6>
+                <ShieldCheck size={16} style={{ color: '#7c3aed' }} />
+                <h6 className="fw-bold mb-0 small" style={{ color: '#0f172a' }}>Apache PDFBox 3.x Extraction</h6>
               </div>
-              <p className="text-secondary small mb-0" style={{ fontSize: '0.78rem' }}>
+              <p className="small mb-0" style={{ color: '#64748b', fontSize: '0.8rem', lineHeight: 1.5 }}>
                 Positional document text extraction normalized before passing to OpenAI JSON schema.
               </p>
             </div>
@@ -236,10 +247,10 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-top border-secondary border-opacity-25 py-3 text-center small text-secondary" style={{ background: '#0a0f1d' }}>
+      <footer className="border-top py-3 text-center small" style={{ background: '#ffffff', borderColor: '#e2e8f0', color: '#64748b' }}>
         <div className="container d-flex flex-wrap align-items-center justify-content-between gap-2">
-          <span>HireScope AI &bull; Built by Ganesh Badar</span>
-          <span className="code-font text-muted" style={{ fontSize: '0.72rem' }}>
+          <span style={{ color: '#334155', fontWeight: '500' }}>HireScope AI &bull; Built by Ganesh Badar</span>
+          <span className="code-font" style={{ color: '#94a3b8', fontSize: '0.72rem' }}>
             Spring Boot 3.3.4 &bull; Java 17 &bull; React 18 &bull; MySQL &bull; AWS S3 &bull; OpenAI
           </span>
         </div>
