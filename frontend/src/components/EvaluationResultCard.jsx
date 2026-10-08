@@ -18,15 +18,15 @@ export default function EvaluationResultCard({ result, onReset }) {
   return (
     <div className="glass-panel p-4 mb-4">
       {/* Top Banner */}
-      <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 pb-3 mb-3 border-bottom" style={{ borderColor: '#e2e8f0' }}>
+      <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 pb-3 mb-3 border-bottom" style={{ borderColor: 'var(--border-color)' }}>
         <div className="d-flex align-items-center gap-2">
           <div className="p-2 rounded-circle" style={{ background: scoreBadgeBg, color: scoreColor }}>
             <Award size={24} />
           </div>
           <div>
-            <h5 className="fw-bold mb-0" style={{ color: '#0f172a' }}>AI Candidate Evaluation Complete</h5>
-            <span className="small" style={{ color: '#64748b' }}>
-              Evaluated against <span className="fw-semibold" style={{ color: '#0f172a' }}>{result.jobTitle || 'Target Role'}</span>
+            <h5 className="fw-bold mb-0" style={{ color: 'var(--text-primary)' }}>AI Candidate Evaluation Complete</h5>
+            <span className="small" style={{ color: 'var(--text-secondary)' }}>
+              Evaluated against <span className="fw-semibold" style={{ color: 'var(--text-primary)' }}>{result.jobTitle || 'Target Role'}</span>
             </span>
           </div>
         </div>
@@ -36,9 +36,9 @@ export default function EvaluationResultCard({ result, onReset }) {
           className="btn btn-sm d-flex align-items-center gap-1 shadow-sm"
           style={{
             fontSize: '0.78rem',
-            background: '#ffffff',
-            border: '1px solid #cbd5e1',
-            color: '#334155'
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border-subtle)',
+            color: 'var(--text-nav)'
           }}
         >
           <RefreshCw size={13} />
@@ -52,14 +52,14 @@ export default function EvaluationResultCard({ result, onReset }) {
           <div
             className="p-4 rounded-4 d-inline-flex flex-column align-items-center justify-content-center shadow-sm"
             style={{
-              background: '#ffffff',
+              background: 'var(--bg-card)',
               border: `2px solid ${scoreColor}`,
               minWidth: '180px',
               minHeight: '180px',
               boxShadow: `0 10px 30px -5px ${scoreColor}22`
             }}
           >
-            <span className="small fw-bold text-uppercase tracking-wider" style={{ color: '#64748b' }}>
+            <span className="small fw-bold text-uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
               Match Score
             </span>
             <div className="display-4 fw-bold my-1" style={{ color: scoreColor }}>
@@ -76,17 +76,17 @@ export default function EvaluationResultCard({ result, onReset }) {
 
         {/* Executive Summary Column */}
         <div className="col-md-8">
-          <div className="p-3 rounded-3" style={{ background: '#f8fafc', border: '1px solid #e2e8f0' }}>
-            <div className="fw-bold small mb-2 d-flex align-items-center gap-2" style={{ color: '#0f172a' }}>
-              <Sparkles size={14} style={{ color: '#7c3aed' }} />
+          <div className="p-3 rounded-3" style={{ background: 'var(--bg-subtle)', border: '1px solid var(--border-color)' }}>
+            <div className="fw-bold small mb-2 d-flex align-items-center gap-2" style={{ color: 'var(--text-primary)' }}>
+              <Sparkles size={14} style={{ color: 'var(--brand-purple)' }} />
               <span>Executive Feedback Summary</span>
             </div>
-            <p className="small mb-0" style={{ color: '#334155', lineHeight: 1.6, fontSize: '0.88rem' }}>
+            <p className="small mb-0" style={{ color: 'var(--text-nav)', lineHeight: 1.6, fontSize: '0.88rem' }}>
               {result.feedback}
             </p>
           </div>
 
-          <div className="mt-3 d-flex flex-wrap align-items-center gap-3 small code-font" style={{ color: '#64748b', fontSize: '0.75rem' }}>
+          <div className="mt-3 d-flex flex-wrap align-items-center gap-3 small code-font" style={{ color: 'var(--text-secondary)', fontSize: '0.75rem' }}>
             <span>ID: {result.evaluationId || 'N/A'}</span>
             <span>&bull;</span>
             <span className="d-flex align-items-center gap-1">
@@ -108,7 +108,7 @@ export default function EvaluationResultCard({ result, onReset }) {
               </div>
               <ul className="list-unstyled mb-0 small">
                 {result.strengths.map((str, idx) => (
-                  <li key={idx} className="mb-2 d-flex align-items-start gap-2" style={{ fontSize: '0.82rem', color: '#1e293b' }}>
+                  <li key={idx} className="mb-2 d-flex align-items-start gap-2" style={{ fontSize: '0.82rem', color: 'var(--text-primary)' }}>
                     <span style={{ color: '#059669' }}>&bull;</span>
                     <span>{str}</span>
                   </li>
@@ -127,7 +127,7 @@ export default function EvaluationResultCard({ result, onReset }) {
               </div>
               <ul className="list-unstyled mb-0 small">
                 {result.gaps.map((gap, idx) => (
-                  <li key={idx} className="mb-2 d-flex align-items-start gap-2" style={{ fontSize: '0.82rem', color: '#1e293b' }}>
+                  <li key={idx} className="mb-2 d-flex align-items-start gap-2" style={{ fontSize: '0.82rem', color: 'var(--text-primary)' }}>
                     <span style={{ color: '#d97706' }}>&bull;</span>
                     <span>{gap}</span>
                   </li>

@@ -1,15 +1,21 @@
 :root {
+  /* ========================================================
+     LIGHT MODE (Default Enterprise Theme)
+     ======================================================== */
   --bg-primary: #F8FAFC;          /* Off-white background */
-  --bg-secondary: #FFFFFF;        /* Pure white for panels & cards */
-  --bg-card: #FFFFFF;
-  --bg-subtle: #F1F5F9;           /* Slate 100 for subtle sections */
+  --bg-nav: #FFFFFF;              /* Crisp white navbar */
+  --bg-card: #FFFFFF;             /* White elevated card surfaces */
+  --bg-subtle: #F1F5F9;           /* Slate 100 subtle containers */
+  --bg-inset: #F8FAFC;            /* Subtle inset sections */
   --border-color: #E2E8F0;        /* Slate 200 clean borders */
+  --border-subtle: #CBD5E1;       /* Slate 300 */
   --border-glow: rgba(79, 70, 229, 0.35);
+
   --text-primary: #0F172A;        /* Slate 900 for dark crisp headings */
   --text-nav: #334155;            /* Slate Gray (Slate 700) for body & nav */
-  --text-secondary: #64748B;      /* Slate 500 for secondary descriptions */
+  --text-secondary: #64748B;      /* Slate 500 for descriptions */
   --text-muted: #94A3B8;          /* Slate 400 */
-  
+
   /* Modern AI Accents: Deep Indigo (#4F46E5) & Vibrant Purple (#7C3AED) */
   --brand-indigo: #4F46E5;
   --brand-purple: #7C3AED;
@@ -17,11 +23,90 @@
   --brand-gradient-hover: linear-gradient(135deg, #4338CA 0%, #6D28D9 100%);
   --brand-subtle: rgba(79, 70, 229, 0.08);
   --brand-border: rgba(79, 70, 229, 0.25);
+
+  --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  --card-shadow-hover: 0 10px 25px -3px rgba(79, 70, 229, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
   
+  --dropzone-bg: #F8FAFC;
+  --dropzone-border: #CBD5E1;
+  --input-bg: #FFFFFF;
+  --input-border: #CBD5E1;
+
+  --modal-bg: #FFFFFF;
+  --modal-header-bg: #F8FAFC;
+  --modal-backdrop: rgba(15, 23, 42, 0.65);
+  --btn-close-filter: none;
+
+  --code-bg-warn: #FEF3C7;
+  --code-text-warn: #B45309;
+  --code-bg-info: #E0F2FE;
+  --code-text-info: #0369A1;
+  --code-bg-accent: #E0E7FF;
+  --code-text-accent: #4338CA;
+  --code-bg-purple: #F3E8FF;
+  --code-text-purple: #7E22CE;
+  --code-bg-success: #DCFCE7;
+  --code-text-success: #15803D;
+
   --brand-cyan: #0284C7;
   --brand-emerald: #10B981;
   --brand-amber: #F59E0B;
   --brand-rose: #EF4444;
+}
+
+[data-theme="dark"] {
+  /* ========================================================
+     DARK MODE (Cyber / Enterprise Dark Theme)
+     ======================================================== */
+  --bg-primary: #070B14;          /* Deep sleek dark background */
+  --bg-nav: #0A0F1D;              /* Deep dark navbar */
+  --bg-card: #0D1527;             /* Elevated dark cards */
+  --bg-subtle: #0B1120;           /* Dark slate inner boxes */
+  --bg-inset: #0F172A;            /* Dark inset */
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.14);
+  --border-glow: rgba(99, 102, 241, 0.45);
+
+  --text-primary: #F8FAFC;        /* Crisp white headlines */
+  --text-nav: #CBD5E1;            /* Soft slate nav text */
+  --text-secondary: #94A3B8;      /* Slate 400 */
+  --text-muted: #64748B;          /* Slate 500 */
+
+  --brand-indigo: #6366F1;
+  --brand-purple: #8B5CF6;
+  --brand-gradient: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+  --brand-gradient-hover: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+  --brand-subtle: rgba(99, 102, 241, 0.15);
+  --brand-border: rgba(99, 102, 241, 0.35);
+
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --card-shadow-hover: 0 10px 30px -3px rgba(99, 102, 241, 0.25);
+
+  --dropzone-bg: rgba(99, 102, 241, 0.04);
+  --dropzone-border: rgba(99, 102, 241, 0.35);
+  --input-bg: #0F172A;
+  --input-border: rgba(255, 255, 255, 0.14);
+
+  --modal-bg: #0A0F1D;
+  --modal-header-bg: #070B14;
+  --modal-backdrop: rgba(0, 0, 0, 0.85);
+  --btn-close-filter: invert(1) grayscale(100%) brightness(200%);
+
+  --code-bg-warn: rgba(245, 158, 11, 0.15);
+  --code-text-warn: #FCD34D;
+  --code-bg-info: rgba(14, 165, 233, 0.15);
+  --code-text-info: #7DD3FC;
+  --code-bg-accent: rgba(99, 102, 241, 0.18);
+  --code-text-accent: #A5B4FC;
+  --code-bg-purple: rgba(168, 85, 247, 0.18);
+  --code-text-purple: #D8B4FE;
+  --code-bg-success: rgba(16, 185, 129, 0.15);
+  --code-text-success: #6EE7B7;
+
+  --brand-cyan: #38BDF8;
+  --brand-emerald: #34D399;
+  --brand-amber: #FBBF24;
+  --brand-rose: #F87171;
 }
 
 body {
@@ -32,6 +117,12 @@ body {
   color: var(--text-nav);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth Transitions for Theme Switch */
+nav, .glass-panel, footer, .modal-content, .btn, .custom-input, .dropzone {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
 
 /* Crisp Clean Elevated Cards */
@@ -39,12 +130,11 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: 16px;
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--card-shadow);
 }
 
 .glass-panel:hover {
-  box-shadow: 0 10px 25px -3px rgba(79, 70, 229, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+  box-shadow: var(--card-shadow-hover);
 }
 
 /* Deep Indigo & Vibrant Purple Brand Styling */
@@ -72,16 +162,36 @@ body {
 }
 
 .brand-badge {
-  background: rgba(79, 70, 229, 0.08);
-  border: 1px solid rgba(79, 70, 229, 0.25);
+  background: var(--brand-subtle);
+  border: 1px solid var(--brand-border);
   color: var(--brand-indigo);
   font-weight: 600;
 }
 
+/* Theme Toggle Button */
+.theme-toggle-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-nav);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--brand-indigo);
+  color: var(--brand-indigo);
+  transform: translateY(-1px);
+}
+
 /* Custom inputs */
 .custom-input {
-  background: #ffffff !important;
-  border: 1px solid #cbd5e1 !important;
+  background: var(--input-bg) !important;
+  border: 1px solid var(--input-border) !important;
   color: var(--text-primary) !important;
   border-radius: 10px;
 }
@@ -95,7 +205,7 @@ body {
 @keyframes pulseGlow {
   0%, 100% {
     box-shadow: 0 0 12px rgba(79, 70, 229, 0.15);
-    border-color: rgba(79, 70, 229, 0.4);
+    border-color: rgba(79, 70, 229, 0.35);
   }
   50% {
     box-shadow: 0 0 24px rgba(124, 58, 237, 0.25);
@@ -109,8 +219,8 @@ body {
 
 /* Custom Drag & Drop Box */
 .dropzone {
-  border: 2px dashed #cbd5e1;
-  background: #f8fafc;
+  border: 2px dashed var(--dropzone-border);
+  background: var(--dropzone-bg);
   border-radius: 14px;
   padding: 32px 20px;
   text-align: center;
@@ -120,7 +230,7 @@ body {
 
 .dropzone:hover, .dropzone.active {
   border-color: var(--brand-indigo);
-  background: rgba(79, 70, 229, 0.04);
+  background: var(--brand-subtle);
 }
 
 .code-font {
