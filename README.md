@@ -1,4 +1,4 @@
-# ⚡ NexusATS &mdash; AI-Powered Resume Screener & Applicant Tracking System
+# ⚡ HireScope AI &mdash; Enterprise AI Resume Screener &amp; Applicant Tracking System
 
 [![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.3.4-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)

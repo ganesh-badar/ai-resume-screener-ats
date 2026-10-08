@@ -12,7 +12,7 @@ export default function Navbar({ isBackendLive, onOpenArchitecture }) {
           </div>
           <div>
             <div className="fw-bold text-white fs-5 lh-1 d-flex align-items-center gap-2">
-              <span>NexusATS</span>
+              <span>HireScope AI</span>
               <span className="badge brand-badge small px-2 py-1" style={{ fontSize: '0.65rem' }}>AI Screener</span>
             </div>
             <span className="text-secondary small" style={{ fontSize: '0.72rem' }}>

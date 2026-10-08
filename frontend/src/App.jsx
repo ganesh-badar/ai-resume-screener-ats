@@ -238,7 +238,7 @@ export default function App() {
       {/* Footer */}
       <footer className="border-top border-secondary border-opacity-25 py-3 text-center small text-secondary" style={{ background: '#0a0f1d' }}>
         <div className="container d-flex flex-wrap align-items-center justify-content-between gap-2">
-          <span>NexusATS &bull; Built by Ganesh Badar</span>
+          <span>HireScope AI &bull; Built by Ganesh Badar</span>
           <span className="code-font text-muted" style={{ fontSize: '0.72rem' }}>
             Spring Boot 3.3.4 &bull; Java 17 &bull; React 18 &bull; MySQL &bull; AWS S3 &bull; OpenAI
           </span>
