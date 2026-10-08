@@ -35,10 +35,20 @@ export default function App() {
     init();
   }, []);
 
+  const [openAiApiKey, setOpenAiApiKey] = useState(() => {
+    return sessionStorage.getItem('ats_openai_key') || '';
+  });
+  const [showKeyInput, setShowKeyInput] = useState(false);
+
+  const handleSaveApiKey = (key) => {
+    setOpenAiApiKey(key);
+    sessionStorage.setItem('ats_openai_key', key);
+  };
+
   const handleLoadSampleResume = (sample) => {
-    // Create a mock File object with the sample text
     const blob = new Blob([sample.textSnippet], { type: 'application/pdf' });
     const file = new File([blob], sample.name, { type: 'application/pdf' });
+    file.textSnippet = sample.textSnippet;
     setSelectedFile(file);
   };
 
@@ -65,8 +75,14 @@ export default function App() {
     setStreamingStatus('PENDING');
     setStreamingStep('HTTP 202 Accepted. Subscribing to Server-Sent Events stream...');
 
-    // Subscribe to SSE stream (or simulated stream on static GitHub Pages)
-    subscribeToEvaluationStream(evaluationId, res.live, (eventType, data) => {
+    const evaluationContext = {
+      file: selectedFile,
+      job: selectedJob,
+      openAiApiKey: openAiApiKey.trim()
+    };
+
+    // Subscribe to SSE stream with dynamic file and job context
+    subscribeToEvaluationStream(evaluationId, res.live, evaluationContext, (eventType, data) => {
       if (eventType === 'INIT') {
         setStreamingStatus('CONNECTED');
         setStreamingStep(data.message || 'Stream connected.');
@@ -116,6 +132,42 @@ export default function App() {
             Combines <strong>Spring Boot 3</strong> asynchronous ingestion (<code className="text-warning">HTTP 202 Accepted</code>),
             bounded thread pooling (<code className="text-info">@Async</code>), and <strong>Server-Sent Events (SSE)</strong> for instant UI updates powered by OpenAI.
           </p>
+
+          {/* Optional Live OpenAI Key Toggle */}
+          <div className="d-inline-flex flex-column align-items-center mt-2">
+            <button
+              type="button"
+              onClick={() => setShowKeyInput(!showKeyInput)}
+              className="btn btn-sm btn-outline-secondary py-1 px-3 rounded-pill text-secondary d-flex align-items-center gap-1"
+              style={{ fontSize: '0.72rem', borderColor: 'rgba(255,255,255,0.1)' }}
+            >
+              <Zap size={12} className={openAiApiKey ? "text-success" : "text-warning"} />
+              <span>{openAiApiKey ? "Custom OpenAI Key Active" : "Use Custom OpenAI Key (Optional)"}</span>
+            </button>
+
+            {showKeyInput && (
+              <div className="mt-2 p-2 rounded-3 d-flex align-items-center gap-2" style={{ background: '#0d1527', border: '1px solid rgba(255,255,255,0.1)', maxWidth: '400px' }}>
+                <input
+                  type="password"
+                  placeholder="sk-proj-..."
+                  value={openAiApiKey}
+                  onChange={(e) => handleSaveApiKey(e.target.value)}
+                  className="form-control form-control-sm custom-input"
+                  style={{ fontSize: '0.75rem' }}
+                />
+                {openAiApiKey && (
+                  <button
+                    type="button"
+                    onClick={() => handleSaveApiKey('')}
+                    className="btn btn-sm btn-outline-danger py-0 px-2 small"
+                    style={{ fontSize: '0.7rem' }}
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Evaluation Output or Input Flow */}
