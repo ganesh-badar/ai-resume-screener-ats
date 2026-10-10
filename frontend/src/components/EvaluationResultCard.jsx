@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, CheckCircle2, AlertTriangle, Clock, RefreshCw, FileText, Sparkles } from 'lucide-react';
+import { FileCheck2, CheckCircle2, AlertTriangle, Clock, RefreshCw, Layers } from 'lucide-react';
 
 export default function EvaluationResultCard({ result, onReset }) {
   if (!result) return null;
@@ -10,88 +10,83 @@ export default function EvaluationResultCard({ result, onReset }) {
 
   const scoreColor = isHighMatch ? '#059669' : isMediumMatch ? '#d97706' : '#dc2626';
   const scoreBadgeBg = isHighMatch
-    ? 'rgba(16, 185, 129, 0.12)'
+    ? 'rgba(16, 185, 129, 0.10)'
     : isMediumMatch
-    ? 'rgba(245, 158, 11, 0.12)'
-    : 'rgba(239, 68, 68, 0.12)';
+    ? 'rgba(245, 158, 11, 0.10)'
+    : 'rgba(239, 68, 68, 0.10)';
 
   return (
     <div className="glass-panel p-4 mb-4">
       {/* Top Banner */}
       <div className="d-flex flex-wrap align-items-center justify-content-between gap-3 pb-3 mb-3 border-bottom" style={{ borderColor: 'var(--border-color)' }}>
         <div className="d-flex align-items-center gap-2">
-          <div className="p-2 rounded-circle" style={{ background: scoreBadgeBg, color: scoreColor }}>
-            <Award size={24} />
+          <div className="p-2 border rounded-1" style={{ background: scoreBadgeBg, borderColor: scoreColor, color: scoreColor }}>
+            <FileCheck2 size={20} />
           </div>
           <div>
-            <h5 className="fw-bold mb-0" style={{ color: 'var(--text-primary)' }}>AI Candidate Evaluation Complete</h5>
-            <span className="small" style={{ color: 'var(--text-secondary)' }}>
-              Evaluated against <span className="fw-semibold" style={{ color: 'var(--text-primary)' }}>{result.jobTitle || 'Target Role'}</span>
+            <h5 className="fw-bold mb-0" style={{ color: 'var(--text-primary)', fontSize: '1.02rem' }}>
+              Candidate Evaluation Specification Complete
+            </h5>
+            <span className="small code-font" style={{ color: 'var(--text-secondary)', fontSize: '0.74rem' }}>
+              Target Requisition: <strong style={{ color: 'var(--text-primary)' }}>{result.jobTitle || 'Target Role'}</strong>
             </span>
           </div>
         </div>
 
         <button
           onClick={onReset}
-          className="btn btn-sm d-flex align-items-center gap-1 shadow-sm"
-          style={{
-            fontSize: '0.78rem',
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-subtle)',
-            color: 'var(--text-nav)'
-          }}
+          className="btn btn-sm btn-brand-outline d-flex align-items-center gap-1 py-1 px-3"
+          style={{ fontSize: '0.78rem' }}
         >
           <RefreshCw size={13} />
-          <span>Screen Another Resume</span>
+          <span>Screen Another Candidate</span>
         </button>
       </div>
 
       <div className="row g-4 align-items-center mb-4">
-        {/* Score Meter Column */}
+        {/* Match Metric Column */}
         <div className="col-md-4 text-center">
           <div
-            className="p-4 rounded-4 d-inline-flex flex-column align-items-center justify-content-center shadow-sm"
+            className="p-4 border rounded-1 d-inline-flex flex-column align-items-center justify-content-center w-100"
             style={{
-              background: 'var(--bg-card)',
-              border: `2px solid ${scoreColor}`,
-              minWidth: '180px',
-              minHeight: '180px',
-              boxShadow: `0 10px 30px -5px ${scoreColor}22`
+              background: 'var(--bg-subtle)',
+              borderColor: scoreColor,
+              minHeight: '160px'
             }}
           >
-            <span className="small fw-bold text-uppercase tracking-wider" style={{ color: 'var(--text-secondary)' }}>
-              Match Score
+            <span className="small fw-bold text-uppercase code-font" style={{ color: 'var(--text-muted)', fontSize: '0.70rem' }}>
+              Algorithmic Alignment Score
             </span>
-            <div className="display-4 fw-bold my-1" style={{ color: scoreColor }}>
+            <div className="display-5 fw-bold my-1 code-font" style={{ color: scoreColor }}>
               {score}%
             </div>
             <span
-              className="badge px-3 py-1 rounded-pill small"
-              style={{ background: scoreBadgeBg, color: scoreColor, fontSize: '0.75rem' }}
+              className="badge technical-badge"
+              style={{ background: scoreBadgeBg, color: scoreColor, borderColor: scoreColor, fontSize: '0.74rem' }}
             >
-              {isHighMatch ? 'High Alignment' : isMediumMatch ? 'Moderate Match' : 'Low Relevance'}
+              {isHighMatch ? 'High Technical Fit' : isMediumMatch ? 'Moderate Alignment' : 'Sub-Threshold Alignment'}
             </span>
           </div>
         </div>
 
         {/* Executive Summary Column */}
         <div className="col-md-8">
-          <div className="p-3 rounded-3" style={{ background: 'var(--bg-subtle)', border: '1px solid var(--border-color)' }}>
+          <div className="p-3 border rounded-1" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)' }}>
             <div className="fw-bold small mb-2 d-flex align-items-center gap-2" style={{ color: 'var(--text-primary)' }}>
-              <Sparkles size={14} style={{ color: 'var(--brand-purple)' }} />
-              <span>Executive Feedback Summary</span>
+              <Layers size={14} style={{ color: 'var(--brand-primary)' }} />
+              <span className="text-uppercase code-font" style={{ fontSize: '0.74rem' }}>Technical Assessment Summary</span>
             </div>
-            <p className="small mb-0" style={{ color: 'var(--text-nav)', lineHeight: 1.6, fontSize: '0.88rem' }}>
+            <p className="small mb-0" style={{ color: 'var(--text-nav)', lineHeight: 1.6, fontSize: '0.86rem' }}>
               {result.feedback}
             </p>
           </div>
 
-          <div className="mt-3 d-flex flex-wrap align-items-center gap-3 small code-font" style={{ color: 'var(--text-secondary)', fontSize: '0.75rem' }}>
-            <span>ID: {result.evaluationId || 'N/A'}</span>
+          <div className="mt-2 d-flex flex-wrap align-items-center gap-3 small code-font" style={{ color: 'var(--text-muted)', fontSize: '0.72rem' }}>
+            <span>EVALUATION-UUID: {result.evaluationId || 'DEMO-INSTANCE'}</span>
             <span>&bull;</span>
             <span className="d-flex align-items-center gap-1">
-              <Clock size={12} />
-              SSE Real-Time Push Verified
+              <Clock size={11} />
+              W3C Server-Sent Event Delivery: VERIFIED
             </span>
           </div>
         </div>
@@ -101,10 +96,10 @@ export default function EvaluationResultCard({ result, onReset }) {
       <div className="row g-3">
         {result.strengths && result.strengths.length > 0 && (
           <div className="col-md-6">
-            <div className="p-3 rounded-3 h-100" style={{ background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.25)' }}>
-              <div className="fw-bold small mb-2 d-flex align-items-center gap-2" style={{ color: '#059669' }}>
+            <div className="p-3 border rounded-1 h-100" style={{ background: 'rgba(16, 185, 129, 0.04)', borderColor: 'rgba(16, 185, 129, 0.3)' }}>
+              <div className="fw-bold small mb-2 d-flex align-items-center gap-2" style={{ color: '#059669', fontSize: '0.80rem' }}>
                 <CheckCircle2 size={15} />
-                <span>Identified Strengths &amp; Proficiencies</span>
+                <span className="text-uppercase code-font">Verified Technical Competencies</span>
               </div>
               <ul className="list-unstyled mb-0 small">
                 {result.strengths.map((str, idx) => (
@@ -120,10 +115,10 @@ export default function EvaluationResultCard({ result, onReset }) {
 
         {result.gaps && result.gaps.length > 0 && (
           <div className="col-md-6">
-            <div className="p-3 rounded-3 h-100" style={{ background: 'rgba(245, 158, 11, 0.05)', border: '1px solid rgba(245, 158, 11, 0.25)' }}>
-              <div className="fw-bold small mb-2 d-flex align-items-center gap-2" style={{ color: '#d97706' }}>
+            <div className="p-3 border rounded-1 h-100" style={{ background: 'rgba(245, 158, 11, 0.04)', borderColor: 'rgba(245, 158, 11, 0.3)' }}>
+              <div className="fw-bold small mb-2 d-flex align-items-center gap-2" style={{ color: '#d97706', fontSize: '0.80rem' }}>
                 <AlertTriangle size={15} />
-                <span>Areas for Clarification / Missing Gaps</span>
+                <span className="text-uppercase code-font">Requisition Skill Gaps &amp; Clarifications</span>
               </div>
               <ul className="list-unstyled mb-0 small">
                 {result.gaps.map((gap, idx) => (

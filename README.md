@@ -1,13 +1,13 @@
-# ⚡ HireScope AI &mdash; Enterprise AI Resume Screener &amp; Applicant Tracking System
+# HireScope ATS &mdash; Enterprise Candidate Document Screener &amp; Applicant Tracking System
 
 [![Java](https://img.shields.io/badge/Java-17%2B-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.3.4-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
 [![Spring Data JPA](https://img.shields.io/badge/Spring_Data_JPA-Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white)](https://spring.io/projects/spring-data-jpa)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![Server-Sent Events](https://img.shields.io/badge/Real--Time-SSE-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://html.spec.whatwg.org/multipage/server-sent-events.html)
-[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o--mini-412991?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/)
-[![Theme](https://img.shields.io/badge/Theme-Light%20%7C%20Dark%20Mode-4F46E5?style=for-the-badge)](https://ganesh-badar.github.io/ai-resume-screener-ats/)
+[![Server-Sent Events](https://img.shields.io/badge/Real--Time-SSE-0284C7?style=for-the-badge&logo=postman&logoColor=white)](https://html.spec.whatwg.org/multipage/server-sent-events.html)
+[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4o--mini-0F172A?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/)
+[![Theme](https://img.shields.io/badge/Theme-Monochrome%20%7C%20Cobalt-0284C7?style=for-the-badge)](https://ganesh-badar.github.io/ai-resume-screener-ats/)
 
 An enterprise-grade, asynchronous **AI-Powered Resume Screener & ATS** engineered with **Spring Boot 3**, **React 18**, **Server-Sent Events (SSE)**, **Apache PDFBox 3.x**, and **OpenAI API (GPT-4o-mini)**.
 

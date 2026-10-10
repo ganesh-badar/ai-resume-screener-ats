@@ -1,242 +1,266 @@
 :root {
   /* ========================================================
-     LIGHT MODE (Default Enterprise Theme)
+     LIGHT MODE: Architectural Enterprise Workstation Palette
      ======================================================== */
-  --bg-primary: #F8FAFC;          /* Off-white background */
-  --bg-nav: #FFFFFF;              /* Crisp white navbar */
-  --bg-card: #FFFFFF;             /* White elevated card surfaces */
-  --bg-subtle: #F1F5F9;           /* Slate 100 subtle containers */
-  --bg-inset: #F8FAFC;            /* Subtle inset sections */
-  --border-color: #E2E8F0;        /* Slate 200 clean borders */
-  --border-subtle: #CBD5E1;       /* Slate 300 */
-  --border-glow: rgba(79, 70, 229, 0.35);
+  --bg-primary: #F8FAFC;          /* Clean slate-50 base */
+  --bg-nav: #FFFFFF;              /* Crisp white navigation */
+  --bg-card: #FFFFFF;             /* Elevated card surface */
+  --bg-subtle: #F1F5F9;           /* Slate-100 structured container */
+  --bg-inset: #E2E8F0;            /* Slate-200 inner border area */
+  --border-color: #E2E8F0;        /* Slate-200 boundary */
+  --border-subtle: #CBD5E1;       /* Slate-300 divider */
+  --border-strong: #94A3B8;       /* Slate-400 focus boundary */
 
-  --text-primary: #0F172A;        /* Slate 900 for dark crisp headings */
-  --text-nav: #334155;            /* Slate Gray (Slate 700) for body & nav */
-  --text-secondary: #64748B;      /* Slate 500 for descriptions */
-  --text-muted: #94A3B8;          /* Slate 400 */
+  --text-primary: #0F172A;        /* Slate-900 high contrast */
+  --text-nav: #334155;            /* Slate-700 navigation & headers */
+  --text-secondary: #475569;      /* Slate-600 technical descriptors */
+  --text-muted: #64748B;          /* Slate-500 metadata */
 
-  /* Modern AI Accents: Deep Indigo (#4F46E5) & Vibrant Purple (#7C3AED) */
-  --brand-indigo: #4F46E5;
-  --brand-purple: #7C3AED;
-  --brand-gradient: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
-  --brand-gradient-hover: linear-gradient(135deg, #4338CA 0%, #6D28D9 100%);
-  --brand-subtle: rgba(79, 70, 229, 0.08);
-  --brand-border: rgba(79, 70, 229, 0.25);
+  /* Precision Enterprise Accents: Solid Cobalt & Deep Slate (Zero Purple) */
+  --brand-primary: #0284C7;       /* Precision Sky/Cobalt */
+  --brand-primary-hover: #0369A1; /* Focused Cobalt */
+  --brand-navy: #0F172A;          /* Deep Navy Solid */
+  --brand-navy-hover: #1E293B;    /* Navy Hover */
+  --brand-subtle: rgba(2, 132, 199, 0.08);
+  --brand-border: rgba(2, 132, 199, 0.28);
 
-  --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
-  --card-shadow-hover: 0 10px 25px -3px rgba(79, 70, 229, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
-  
-  --dropzone-bg: #F8FAFC;
-  --dropzone-border: #CBD5E1;
+  --card-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.08), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  --card-shadow-hover: 0 4px 12px -2px rgba(15, 23, 42, 0.12);
+
+  --dropzone-bg: #FFFFFF;
+  --dropzone-border: #94A3B8;
   --input-bg: #FFFFFF;
   --input-border: #CBD5E1;
 
   --modal-bg: #FFFFFF;
   --modal-header-bg: #F8FAFC;
-  --modal-backdrop: rgba(15, 23, 42, 0.65);
+  --modal-backdrop: rgba(15, 23, 42, 0.75);
   --btn-close-filter: none;
 
   --code-bg-warn: #FEF3C7;
-  --code-text-warn: #B45309;
+  --code-text-warn: #92400E;
   --code-bg-info: #E0F2FE;
   --code-text-info: #0369A1;
-  --code-bg-accent: #E0E7FF;
-  --code-text-accent: #4338CA;
-  --code-bg-purple: #F3E8FF;
-  --code-text-purple: #7E22CE;
+  --code-bg-accent: #F1F5F9;
+  --code-text-accent: #0F172A;
   --code-bg-success: #DCFCE7;
-  --code-text-success: #15803D;
+  --code-text-success: #166534;
 
-  --brand-cyan: #0284C7;
-  --brand-emerald: #10B981;
-  --brand-amber: #F59E0B;
-  --brand-rose: #EF4444;
+  --status-emerald: #10B981;
+  --status-amber: #D97706;
+  --status-rose: #DC2626;
 }
 
 [data-theme="dark"] {
   /* ========================================================
-     DARK MODE (Cyber / Enterprise Dark Theme)
+     DARK MODE: Obsidian Monolithic Engineering Console
      ======================================================== */
-  --bg-primary: #070B14;          /* Deep sleek dark background */
-  --bg-nav: #0A0F1D;              /* Deep dark navbar */
-  --bg-card: #0D1527;             /* Elevated dark cards */
-  --bg-subtle: #0B1120;           /* Dark slate inner boxes */
-  --bg-inset: #0F172A;            /* Dark inset */
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-subtle: rgba(255, 255, 255, 0.14);
-  --border-glow: rgba(99, 102, 241, 0.45);
+  --bg-primary: #090D16;          /* Deep obsidian foundation */
+  --bg-nav: #0D121F;              /* Dark console navigation */
+  --bg-card: #111726;             /* Structured panel surface */
+  --bg-subtle: #0B0F19;           /* Recessed workbench container */
+  --bg-inset: #151D2E;            /* Inset module */
+  --border-color: #1E293B;        /* High-definition boundary */
+  --border-subtle: #334155;       /* Sub-grid line */
+  --border-strong: #475569;       /* Solid border */
 
-  --text-primary: #F8FAFC;        /* Crisp white headlines */
-  --text-nav: #CBD5E1;            /* Soft slate nav text */
-  --text-secondary: #94A3B8;      /* Slate 400 */
-  --text-muted: #64748B;          /* Slate 500 */
+  --text-primary: #F8FAFC;        /* High-legibility crisp headline */
+  --text-nav: #CBD5E1;            /* Technical navigation label */
+  --text-secondary: #94A3B8;      /* Specification text */
+  --text-muted: #64748B;          /* Muted telemetry details */
 
-  --brand-indigo: #6366F1;
-  --brand-purple: #8B5CF6;
-  --brand-gradient: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
-  --brand-gradient-hover: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
-  --brand-subtle: rgba(99, 102, 241, 0.15);
-  --brand-border: rgba(99, 102, 241, 0.35);
+  /* Precision Enterprise Accents: Solid Sky & Technical Charcoal */
+  --brand-primary: #0284C7;
+  --brand-primary-hover: #38BDF8;
+  --brand-navy: #1E293B;
+  --brand-navy-hover: #334155;
+  --brand-subtle: rgba(56, 189, 248, 0.10);
+  --brand-border: rgba(56, 189, 248, 0.28);
 
-  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  --card-shadow-hover: 0 10px 30px -3px rgba(99, 102, 241, 0.25);
+  --card-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.45);
+  --card-shadow-hover: 0 6px 20px 0 rgba(0, 0, 0, 0.6);
 
-  --dropzone-bg: rgba(99, 102, 241, 0.04);
-  --dropzone-border: rgba(99, 102, 241, 0.35);
-  --input-bg: #0F172A;
-  --input-border: rgba(255, 255, 255, 0.14);
+  --dropzone-bg: #0B0F19;
+  --dropzone-border: #334155;
+  --input-bg: #0B0F19;
+  --input-border: #334155;
 
-  --modal-bg: #0A0F1D;
-  --modal-header-bg: #070B14;
-  --modal-backdrop: rgba(0, 0, 0, 0.85);
+  --modal-bg: #0D121F;
+  --modal-header-bg: #090D16;
+  --modal-backdrop: rgba(0, 0, 0, 0.88);
   --btn-close-filter: invert(1) grayscale(100%) brightness(200%);
 
-  --code-bg-warn: rgba(245, 158, 11, 0.15);
+  --code-bg-warn: rgba(217, 119, 6, 0.15);
   --code-text-warn: #FCD34D;
-  --code-bg-info: rgba(14, 165, 233, 0.15);
+  --code-bg-info: rgba(2, 132, 199, 0.15);
   --code-text-info: #7DD3FC;
-  --code-bg-accent: rgba(99, 102, 241, 0.18);
-  --code-text-accent: #A5B4FC;
-  --code-bg-purple: rgba(168, 85, 247, 0.18);
-  --code-text-purple: #D8B4FE;
+  --code-bg-accent: rgba(255, 255, 255, 0.08);
+  --code-text-accent: #E2E8F0;
   --code-bg-success: rgba(16, 185, 129, 0.15);
   --code-text-success: #6EE7B7;
 
-  --brand-cyan: #38BDF8;
-  --brand-emerald: #34D399;
-  --brand-amber: #FBBF24;
-  --brand-rose: #F87171;
+  --status-emerald: #34D399;
+  --status-amber: #FBBF24;
+  --status-rose: #F87171;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-nav);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  letter-spacing: -0.01em;
 }
 
-/* Smooth Transitions for Theme Switch */
-nav, .glass-panel, footer, .modal-content, .btn, .custom-input, .dropzone {
-  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* Crisp Clean Elevated Cards */
+/* ========================================================
+   ARCHITECTURAL PANELS & CONTAINERS (Zero Pill Shape)
+   ======================================================== */
 .glass-panel {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: 4px;
   box-shadow: var(--card-shadow);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .glass-panel:hover {
+  border-color: var(--border-subtle);
   box-shadow: var(--card-shadow-hover);
 }
 
-/* Deep Indigo & Vibrant Purple Brand Styling */
-.btn-brand {
-  background: var(--brand-gradient);
-  color: #ffffff !important;
-  border: none;
+/* ========================================================
+   TACTILE SOLID BUTTONS (Zero Gradients, Geometric 4px)
+   ======================================================== */
+.btn-brand-solid {
+  background: var(--brand-navy);
+  color: #FFFFFF !important;
+  border: 1px solid var(--brand-navy);
+  border-radius: 4px;
   font-weight: 600;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.35);
+  padding: 10px 18px;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
 }
 
-.btn-brand:hover {
-  background: var(--brand-gradient-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px 0 rgba(79, 70, 229, 0.45);
-  color: #ffffff !important;
+.btn-brand-solid:hover {
+  background: var(--brand-navy-hover);
+  border-color: var(--brand-navy-hover);
+  color: #FFFFFF !important;
 }
 
-.btn-brand:disabled {
-  opacity: 0.6;
-  transform: none;
+.btn-brand-solid:disabled {
+  opacity: 0.5;
   cursor: not-allowed;
-  box-shadow: none;
 }
 
+.btn-brand-action {
+  background: var(--brand-primary);
+  color: #FFFFFF !important;
+  border: 1px solid var(--brand-primary);
+  border-radius: 4px;
+  font-weight: 600;
+  padding: 12px 20px;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+}
+
+.btn-brand-action:hover {
+  background: var(--brand-primary-hover);
+  border-color: var(--brand-primary-hover);
+  color: #FFFFFF !important;
+}
+
+.btn-brand-action:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-brand-outline {
+  background: transparent;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  font-weight: 500;
+  padding: 6px 12px;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-brand-outline:hover {
+  background: var(--bg-subtle);
+  border-color: var(--border-strong);
+  color: var(--text-primary) !important;
+}
+
+/* ========================================================
+   GEOMETRIC BADGES & METRIC LABELS
+   ======================================================== */
 .brand-badge {
   background: var(--brand-subtle);
   border: 1px solid var(--brand-border);
-  color: var(--brand-indigo);
+  color: var(--brand-primary);
   font-weight: 600;
+  border-radius: 3px;
+  letter-spacing: 0.02em;
 }
 
-/* Theme Toggle Button */
-.theme-toggle-btn {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-nav);
-  border-radius: 20px;
-  padding: 5px 12px;
-  font-weight: 500;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.technical-badge {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  border-radius: 3px;
+  padding: 3px 7px;
 }
 
-.theme-toggle-btn:hover {
-  border-color: var(--brand-indigo);
-  color: var(--brand-indigo);
-  transform: translateY(-1px);
-}
-
-/* Custom inputs */
+/* ========================================================
+   INPUTS & FORM CONTROLS
+   ======================================================== */
 .custom-input {
   background: var(--input-bg) !important;
   border: 1px solid var(--input-border) !important;
   color: var(--text-primary) !important;
-  border-radius: 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
 }
 
 .custom-input:focus {
-  border-color: var(--brand-indigo) !important;
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18) !important;
+  border-color: var(--brand-primary) !important;
+  box-shadow: 0 0 0 1px var(--brand-primary) !important;
 }
 
-/* Pulse Glow Keyframes */
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 12px rgba(79, 70, 229, 0.15);
-    border-color: rgba(79, 70, 229, 0.35);
-  }
-  50% {
-    box-shadow: 0 0 24px rgba(124, 58, 237, 0.25);
-    border-color: var(--brand-purple);
-  }
-}
-
-.pulsing-border {
-  animation: pulseGlow 2.5s infinite;
-}
-
-/* Custom Drag & Drop Box */
+/* ========================================================
+   DROPZONE (Technical Drag & Drop Console)
+   ======================================================== */
 .dropzone {
-  border: 2px dashed var(--dropzone-border);
+  border: 1.5px dashed var(--dropzone-border);
   background: var(--dropzone-bg);
-  border-radius: 14px;
-  padding: 32px 20px;
+  border-radius: 4px;
+  padding: 30px 20px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
 .dropzone:hover, .dropzone.active {
-  border-color: var(--brand-indigo);
+  border-color: var(--brand-primary);
   background: var(--brand-subtle);
 }
 
+/* ========================================================
+   UTILITY & CODE FONT
+   ======================================================== */
 .code-font {
   font-family: 'JetBrains Mono', monospace;
 }
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.border-subtle {
+  border-color: var(--border-color) !important;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Layers, Cpu, Database, Radio, CheckCircle, ShieldCheck } from 'lucide-react';
+import { Layers, Cpu, Database, Radio, X } from 'lucide-react';
 
 export default function ArchitectureModal({ isOpen, onClose }) {
   if (!isOpen) return null;
@@ -7,16 +7,20 @@ export default function ArchitectureModal({ isOpen, onClose }) {
   return (
     <div className="modal show d-block" style={{ backgroundColor: 'var(--modal-backdrop)', zIndex: 1080 }} tabIndex="-1">
       <div className="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div className="modal-content border shadow-lg" style={{ background: 'var(--modal-bg)', borderColor: 'var(--border-color)' }}>
+        <div className="modal-content border shadow-lg" style={{ background: 'var(--modal-bg)', borderColor: 'var(--border-color)', borderRadius: '4px' }}>
           {/* Header */}
           <div className="modal-header px-4 py-3 border-bottom" style={{ background: 'var(--modal-header-bg)', borderColor: 'var(--border-color)' }}>
             <div className="d-flex align-items-center gap-2">
-              <div className="p-2 rounded-3 text-white shadow-sm" style={{ background: 'linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%)' }}>
-                <Layers size={20} />
+              <div className="p-2 border rounded-1" style={{ background: 'var(--bg-subtle)', borderColor: 'var(--border-color)' }}>
+                <Layers size={18} style={{ color: 'var(--brand-primary)' }} />
               </div>
               <div>
-                <h5 className="modal-title fw-bold mb-0" style={{ color: 'var(--text-primary)' }}>System Architecture &amp; Engineering Decisions</h5>
-                <span className="small" style={{ color: 'var(--text-secondary)' }}>Technical Design Breakdown for Software Engineering Interviews</span>
+                <h5 className="modal-title fw-bold mb-0" style={{ color: 'var(--text-primary)', fontSize: '1.05rem' }}>
+                  System Architecture &amp; Concurrency Specifications
+                </h5>
+                <span className="small code-font" style={{ color: 'var(--text-secondary)', fontSize: '0.74rem' }}>
+                  Spring Boot 3.3.4 &bull; Java 17 &bull; ThreadPoolTaskExecutor &bull; SSE Reactive Engine
+                </span>
               </div>
             </div>
             <button
@@ -32,48 +36,48 @@ export default function ArchitectureModal({ isOpen, onClose }) {
           <div className="modal-body px-4 py-3" style={{ maxHeight: '70vh' }}>
             {/* 1. Core Workflow */}
             <div className="mb-4">
-              <h6 className="fw-bold mb-2 d-flex align-items-center gap-2" style={{ color: 'var(--brand-indigo)' }}>
-                <Cpu size={16} />
-                <span>1. Asynchronous Ingestion &amp; Real-Time Streaming Flow</span>
+              <h6 className="fw-bold mb-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider" style={{ color: 'var(--text-primary)', fontSize: '0.76rem' }}>
+                <Cpu size={15} style={{ color: 'var(--brand-primary)' }} />
+                <span>1. Asynchronous Ingestion &amp; Real-Time Streaming Pipeline</span>
               </h6>
-              <div className="p-3 rounded-3" style={{ background: 'var(--bg-subtle)', border: '1px solid var(--border-color)' }}>
-                <ol className="small mb-0 ps-3" style={{ lineHeight: 1.7, color: 'var(--text-nav)' }}>
-                  <li><strong style={{ color: 'var(--text-primary)' }}>Client Upload:</strong> React sends multi-part PDF resume + Job ID to Spring Boot.</li>
-                  <li><strong style={{ color: 'var(--text-primary)' }}>Storage &amp; Metadata:</strong> Spring Boot uploads PDF bytes to S3/disk and saves record as <code style={{ background: 'var(--code-bg-warn)', color: 'var(--code-text-warn)', padding: '2px 5px', borderRadius: '4px' }}>PENDING</code>.</li>
-                  <li><strong style={{ color: 'var(--text-primary)' }}>HTTP 202 Accepted:</strong> Backend immediately returns 202 with an unguessable UUID <code style={{ background: 'var(--code-bg-info)', color: 'var(--code-text-info)', padding: '2px 5px', borderRadius: '4px' }}>evaluationId</code>.</li>
-                  <li><strong style={{ color: 'var(--text-primary)' }}>SSE Connection:</strong> React opens a <code style={{ background: 'var(--code-bg-accent)', color: 'var(--code-text-accent)', padding: '2px 5px', borderRadius: '4px' }}>text/event-stream</code> connection on <code>/api/resumes/stream/{'{evaluationId}'}</code>.</li>
-                  <li><strong style={{ color: 'var(--text-primary)' }}>Background @Async Worker:</strong> Thread pool extracts text via Apache PDFBox 3.x and queries OpenAI <code style={{ background: 'var(--code-bg-purple)', color: 'var(--code-text-purple)', padding: '2px 5px', borderRadius: '4px' }}>gpt-4o-mini</code>.</li>
-                  <li><strong style={{ color: 'var(--text-primary)' }}>Push Update:</strong> Evaluator updates DB to <code style={{ background: 'var(--code-bg-success)', color: 'var(--code-text-success)', padding: '2px 5px', borderRadius: '4px' }}>COMPLETED</code> and pushes result to client via SSE.</li>
+              <div className="p-3 border rounded-1" style={{ background: 'var(--bg-subtle)', borderColor: 'var(--border-color)' }}>
+                <ol className="small mb-0 ps-3" style={{ lineHeight: 1.8, color: 'var(--text-nav)', fontSize: '0.82rem' }}>
+                  <li><strong style={{ color: 'var(--text-primary)' }}>Multipart Ingestion:</strong> Client submits binary PDF payload and Target Requisition ID to <code>POST /api/resumes/upload</code>.</li>
+                  <li><strong style={{ color: 'var(--text-primary)' }}>Object Persistence &amp; 3NF Staging:</strong> Spring Boot uploads PDF bytes to storage and creates an <code>evaluations</code> record marked <code className="code-font" style={{ background: 'var(--code-bg-warn)', color: 'var(--code-text-warn)', padding: '2px 5px' }}>PENDING</code>.</li>
+                  <li><strong style={{ color: 'var(--text-primary)' }}>Immediate HTTP 202 Accepted:</strong> Controller immediately returns HTTP 202 with an unguessable UUID <code className="code-font" style={{ background: 'var(--code-bg-info)', color: 'var(--code-text-info)', padding: '2px 5px' }}>evaluationId</code>, completely freeing the web container thread.</li>
+                  <li><strong style={{ color: 'var(--text-primary)' }}>W3C EventSource Binding:</strong> React opens a unidirectional <code className="code-font" style={{ background: 'var(--code-bg-accent)', color: 'var(--code-text-accent)', padding: '2px 5px' }}>text/event-stream</code> connection to <code>/api/resumes/stream/{'{evaluationId}'}</code>.</li>
+                  <li><strong style={{ color: 'var(--text-primary)' }}>Bounded Worker Execution:</strong> Dedicated background thread extracts text via Apache PDFBox 3.0.3 and coordinates structured scoring.</li>
+                  <li><strong style={{ color: 'var(--text-primary)' }}>Reactive Dispatch:</strong> Evaluator updates MySQL to <code className="code-font" style={{ background: 'var(--code-bg-success)', color: 'var(--code-text-success)', padding: '2px 5px' }}>COMPLETED</code> and emits completion payload over the open SSE connection before terminating.</li>
                 </ol>
               </div>
             </div>
 
-            {/* 2. Key Architectural Decisions */}
+            {/* 2. SSE vs WebSocket Decision */}
             <div className="mb-4">
-              <h6 className="fw-bold mb-2 d-flex align-items-center gap-2" style={{ color: 'var(--brand-indigo)' }}>
-                <Radio size={16} />
-                <span>2. Why Server-Sent Events (SSE) over WebSockets?</span>
+              <h6 className="fw-bold mb-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider" style={{ color: 'var(--text-primary)', fontSize: '0.76rem' }}>
+                <Radio size={15} style={{ color: 'var(--brand-primary)' }} />
+                <span>2. Architectural Tradeoff: Server-Sent Events vs WebSockets</span>
               </h6>
-              <div className="p-3 rounded-3 small" style={{ background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', lineHeight: 1.6, color: 'var(--text-nav)' }}>
-                WebSockets are bidirectional and protocol-heavy (requiring connection upgrade handshakes, custom ping/pong heartbeats, and sticky sessions). In our ATS use-case, the data flow is strictly <strong style={{ color: 'var(--text-primary)' }}>unidirectional (server &rarr; client)</strong>. SSE operates over standard HTTP, works seamlessly behind corporate proxies, natively supports browser reconnects (<code style={{ background: 'var(--code-bg-info)', color: 'var(--code-text-info)', padding: '2px 5px', borderRadius: '4px' }}>EventSource</code>), and drastically reduces operational complexity.
+              <div className="p-3 border rounded-1 small" style={{ background: 'var(--bg-subtle)', borderColor: 'var(--border-color)', lineHeight: 1.6, color: 'var(--text-nav)', fontSize: '0.82rem' }}>
+                In this screening workflow, document evaluation communication is strictly <strong style={{ color: 'var(--text-primary)' }}>unidirectional (server &rarr; client)</strong>. WebSockets require bidirectional socket upgrades, ping/pong heartbeats, and custom proxy routing. In contrast, Server-Sent Events (SSE) operate natively over standard HTTP/1.1 and HTTP/2, traverse corporate load balancers effortlessly, support browser auto-reconnects, and consume negligible server resources.
               </div>
             </div>
 
             {/* 3. Thread Pool Backpressure */}
             <div className="mb-3">
-              <h6 className="fw-bold mb-2 d-flex align-items-center gap-2" style={{ color: 'var(--brand-indigo)' }}>
-                <Database size={16} />
-                <span>3. Bounded Thread Pools &amp; Resource Protection</span>
+              <h6 className="fw-bold mb-2 d-flex align-items-center gap-2 small text-uppercase tracking-wider" style={{ color: 'var(--text-primary)', fontSize: '0.76rem' }}>
+                <Database size={15} style={{ color: 'var(--brand-primary)' }} />
+                <span>3. Bounded Thread Pools &amp; Resource Safeguards</span>
               </h6>
-              <div className="p-3 rounded-3 small" style={{ background: 'var(--bg-subtle)', border: '1px solid var(--border-color)', lineHeight: 1.6, color: 'var(--text-nav)' }}>
-                Rather than using Spring's default <code style={{ background: 'rgba(239, 68, 68, 0.15)', color: '#ef4444', padding: '2px 5px', borderRadius: '4px' }}>SimpleAsyncTaskExecutor</code> (which spawns an unbounded thread per request risking OOM under traffic spikes), we configure a bounded <code style={{ background: 'var(--bg-card)', color: 'var(--text-primary)', border: '1px solid var(--border-color)', padding: '2px 5px', borderRadius: '4px' }}>ThreadPoolTaskExecutor</code> (Core: 5, Max: 20, Queue: 100) with <code style={{ background: 'var(--code-bg-warn)', color: 'var(--code-text-warn)', padding: '2px 5px', borderRadius: '4px' }}>CallerRunsPolicy</code> for natural backpressure.
+              <div className="p-3 border rounded-1 small" style={{ background: 'var(--bg-subtle)', borderColor: 'var(--border-color)', lineHeight: 1.6, color: 'var(--text-nav)', fontSize: '0.82rem' }}>
+                To avoid Out-Of-Memory (OOM) failures under high candidate upload concurrency, the service bypasses Spring's unbounded defaults and enforces a bounded <code className="code-font" style={{ background: 'var(--bg-card)', color: 'var(--text-primary)', border: '1px solid var(--border-color)', padding: '2px 5px' }}>ThreadPoolTaskExecutor</code> (Core: 5 threads, Max: 20 threads, Queue Capacity: 100). When the queue saturates, <code className="code-font" style={{ background: 'var(--code-bg-warn)', color: 'var(--code-text-warn)', padding: '2px 5px' }}>CallerRunsPolicy</code> exerts natural backpressure on incoming HTTP traffic.
               </div>
             </div>
           </div>
 
           {/* Footer */}
           <div className="modal-footer px-4 py-2 border-top" style={{ background: 'var(--modal-header-bg)', borderColor: 'var(--border-color)' }}>
-            <button type="button" onClick={onClose} className="btn btn-sm btn-brand px-3">
+            <button type="button" onClick={onClose} className="btn btn-sm btn-brand-solid px-3">
               Close Overview
             </button>
           </div>

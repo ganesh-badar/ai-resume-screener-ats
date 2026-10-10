@@ -4,6 +4,9 @@ import JobSelector from './components/JobSelector';
 import ResumeUploader from './components/ResumeUploader';
 import EvaluationResultCard from './components/EvaluationResultCard';
 import ArchitectureModal from './components/ArchitectureModal';
+import CustomDomainModal from './components/CustomDomainModal';
+import PrivacyPolicyModal from './components/PrivacyPolicyModal';
+import TermsModal from './components/TermsModal';
 import {
   checkBackendLive,
   fetchJobs,
@@ -11,7 +14,7 @@ import {
   subscribeToEvaluationStream,
   SAMPLE_JOBS
 } from './services/api';
-import { Sparkles, ShieldCheck, Zap, Activity, Cpu } from 'lucide-react';
+import { ShieldCheck, Activity, Cpu, Key, FileCheck2, Globe, Layers, Server } from 'lucide-react';
 
 export default function App() {
   const [jobs, setJobs] = useState(SAMPLE_JOBS);
@@ -22,7 +25,12 @@ export default function App() {
   const [streamingStatus, setStreamingStatus] = useState('IDLE');
   const [streamingStep, setStreamingStep] = useState('');
   const [evaluationResult, setEvaluationResult] = useState(null);
+
+  // Modal Visibility States
   const [isArchModalOpen, setIsArchModalOpen] = useState(false);
+  const [isDomainModalOpen, setIsDomainModalOpen] = useState(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
   // Theme Management (Light vs Dark)
   const [theme, setTheme] = useState(() => {
@@ -71,7 +79,7 @@ export default function App() {
 
     setIsProcessing(true);
     setStreamingStatus('UPLOADING');
-    setStreamingStep('Sending document to Spring Boot backend (multipart/form-data)...');
+    setStreamingStep('Dispatching multipart document to backend endpoint (POST /api/resumes/upload)...');
     setEvaluationResult(null);
 
     const formData = new FormData();
@@ -80,14 +88,14 @@ export default function App() {
 
     const res = await uploadResumeApi(formData);
     if (!res.success) {
-      alert('Upload failed. Please try again.');
+      alert('Upload failed. Please verify network connectivity.');
       setIsProcessing(false);
       return;
     }
 
     const { evaluationId } = res.data;
     setStreamingStatus('PENDING');
-    setStreamingStep('HTTP 202 Accepted. Subscribing to Server-Sent Events stream...');
+    setStreamingStep('HTTP 202 Accepted received. Subscribing to W3C Server-Sent Events stream...');
 
     const evaluationContext = {
       file: selectedFile,
@@ -99,10 +107,10 @@ export default function App() {
     subscribeToEvaluationStream(evaluationId, res.live, evaluationContext, (eventType, data) => {
       if (eventType === 'INIT') {
         setStreamingStatus('CONNECTED');
-        setStreamingStep(data.message || 'Stream connected.');
+        setStreamingStep(data.message || 'Stream connection verified.');
       } else if (eventType === 'STATUS_UPDATE') {
         setStreamingStatus(data.status || 'PROCESSING');
-        setStreamingStep(data.step || 'Worker executing text extraction and semantic scoring...');
+        setStreamingStep(data.step || 'Worker executing text extraction and semantic skill rubrics...');
       } else if (eventType === 'COMPLETED') {
         setStreamingStatus('COMPLETED');
         setEvaluationResult({
@@ -111,7 +119,7 @@ export default function App() {
         });
         setIsProcessing(false);
       } else if (eventType === 'ERROR') {
-        alert(data.error || 'Evaluation failed.');
+        alert(data.error || 'Evaluation processing error.');
         setIsProcessing(false);
       }
     });
@@ -130,56 +138,50 @@ export default function App() {
       <Navbar
         isBackendLive={isBackendLive}
         onOpenArchitecture={() => setIsArchModalOpen(true)}
+        onOpenDomain={() => setIsDomainModalOpen(true)}
+        onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
+        onOpenTerms={() => setIsTermsModalOpen(true)}
         theme={theme}
         toggleTheme={toggleTheme}
       />
 
       <main className="container py-4 flex-grow-1">
-        {/* Hero Section */}
-        <div className="text-center py-4 mb-3">
-          <div className="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill brand-badge small mb-3 shadow-sm">
-            <Sparkles size={14} />
-            <span>Enterprise AI-Powered Resume Screener &amp; Real-Time ATS</span>
+        {/* Architectural Hero Header */}
+        <div className="text-center py-4 mb-3 border-bottom pb-4" style={{ borderColor: 'var(--border-color)' }}>
+          <div className="d-inline-flex align-items-center gap-2 px-2 py-1 brand-badge small mb-2">
+            <span className="code-font" style={{ fontSize: '0.74rem' }}>SYSTEM SPECIFICATION: RFC 7231 / W3C SSE</span>
           </div>
-          <h1 className="display-6 fw-bold mb-2" style={{ color: 'var(--text-primary)' }}>
-            Automated Candidate Screening with{' '}
-            <span style={{ background: 'var(--brand-gradient)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              Zero Thread Starvation
-            </span>
+          <h1 className="display-6 fw-bold mb-2" style={{ color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
+            Enterprise ATS Document Parser &amp; Asynchronous Screener
           </h1>
-          <p className="mx-auto" style={{ maxWidth: '720px', fontSize: '0.98rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-            Combines <strong style={{ color: 'var(--text-primary)' }}>Spring Boot 3</strong> asynchronous ingestion (
-            <code style={{ background: 'var(--code-bg-warn)', color: 'var(--code-text-warn)', padding: '2px 6px', borderRadius: '4px', fontSize: '0.85em' }}>HTTP 202 Accepted</code>
-            ), bounded thread pooling (
-            <code style={{ background: 'var(--code-bg-info)', color: 'var(--code-text-info)', padding: '2px 6px', borderRadius: '4px', fontSize: '0.85em' }}>@Async</code>
-            ), and <strong style={{ color: 'var(--text-primary)' }}>Server-Sent Events (SSE)</strong> for instant UI updates powered by OpenAI.
+          <p className="mx-auto" style={{ maxWidth: '780px', fontSize: '0.94rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+            Combines <strong style={{ color: 'var(--text-primary)' }}>Spring Boot 3.3.4</strong> non-blocking ingestion (
+            <code className="technical-badge">HTTP 202 Accepted</code>
+            ), bounded thread pool execution (
+            <code className="technical-badge">ThreadPoolTaskExecutor</code>
+            ), Apache PDFBox 3.x document parsing, and <strong style={{ color: 'var(--text-primary)' }}>Server-Sent Events (SSE)</strong> for real-time candidate evaluation.
           </p>
 
-          {/* Optional Live OpenAI Key Toggle */}
+          {/* Optional Direct API Key Configuration */}
           <div className="d-inline-flex flex-column align-items-center mt-2">
             <button
               type="button"
               onClick={() => setShowKeyInput(!showKeyInput)}
-              className="btn btn-sm py-1 px-3 rounded-pill d-flex align-items-center gap-1 shadow-sm"
-              style={{
-                fontSize: '0.74rem',
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border-subtle)',
-                color: 'var(--text-secondary)'
-              }}
+              className="btn btn-sm btn-brand-outline d-flex align-items-center gap-2 py-1 px-3"
+              style={{ fontSize: '0.76rem' }}
             >
-              <Zap size={12} className={openAiApiKey ? "text-success" : "text-warning"} />
-              <span>{openAiApiKey ? "Custom OpenAI Key Active" : "Use Custom OpenAI Key (Optional)"}</span>
+              <Key size={13} style={{ color: openAiApiKey ? 'var(--status-emerald)' : 'var(--text-muted)' }} />
+              <span>{openAiApiKey ? "Custom OpenAI Key Active (BYOK)" : "Configure Optional OpenAI Inference Key"}</span>
             </button>
 
             {showKeyInput && (
-              <div className="mt-2 p-2 rounded-3 d-flex align-items-center gap-2 shadow-sm" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-subtle)', maxWidth: '420px', width: '100%' }}>
+              <div className="mt-2 p-2 border rounded-1 d-flex align-items-center gap-2" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-color)', maxWidth: '420px', width: '100%' }}>
                 <input
                   type="password"
                   placeholder="sk-proj-..."
                   value={openAiApiKey}
                   onChange={(e) => handleSaveApiKey(e.target.value)}
-                  className="form-control form-control-sm custom-input"
+                  className="form-control form-control-sm custom-input code-font"
                   style={{ fontSize: '0.78rem' }}
                 />
                 {openAiApiKey && (
@@ -197,7 +199,7 @@ export default function App() {
           </div>
         </div>
 
-        {/* Evaluation Output or Input Flow */}
+        {/* Evaluation Output or Ingestion Workflow */}
         {evaluationResult ? (
           <EvaluationResultCard
             result={evaluationResult}
@@ -224,58 +226,114 @@ export default function App() {
           </div>
         )}
 
-        {/* Architecture Highlights Footer Info */}
-        <div className="row g-3 mt-2">
+        {/* Core Architectural Pillars */}
+        <div className="row g-3 mt-1">
           <div className="col-md-4">
             <div className="glass-panel p-3 h-100">
-              <div className="d-flex align-items-center gap-2 mb-1">
-                <Cpu size={16} style={{ color: 'var(--brand-indigo)' }} />
-                <h6 className="fw-bold mb-0 small" style={{ color: 'var(--text-primary)' }}>Asynchronous Request-Reply</h6>
+              <div className="d-flex align-items-center gap-2 mb-2">
+                <Cpu size={16} style={{ color: 'var(--brand-primary)' }} />
+                <h6 className="fw-bold mb-0 small text-uppercase code-font" style={{ color: 'var(--text-primary)', fontSize: '0.78rem' }}>
+                  Asynchronous Request-Reply
+                </h6>
               </div>
-              <p className="small mb-0" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', lineHeight: 1.5 }}>
-                Returns 202 Accepted instantly; offloads LLM inference to a bounded ThreadPoolTaskExecutor.
+              <p className="small mb-0" style={{ color: 'var(--text-secondary)', fontSize: '0.80rem', lineHeight: 1.5 }}>
+                Returns 202 Accepted immediately with an unguessable UUID. Offloads parsing and scoring to an isolated thread pool without holding servlet threads.
               </p>
             </div>
           </div>
           <div className="col-md-4">
             <div className="glass-panel p-3 h-100">
-              <div className="d-flex align-items-center gap-2 mb-1">
-                <Activity size={16} className="text-success" />
-                <h6 className="fw-bold mb-0 small" style={{ color: 'var(--text-primary)' }}>Unidirectional SSE Streaming</h6>
+              <div className="d-flex align-items-center gap-2 mb-2">
+                <Activity size={16} style={{ color: '#059669' }} />
+                <h6 className="fw-bold mb-0 small text-uppercase code-font" style={{ color: 'var(--text-primary)', fontSize: '0.78rem' }}>
+                  Unidirectional SSE Stream
+                </h6>
               </div>
-              <p className="small mb-0" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', lineHeight: 1.5 }}>
-                Streams status updates directly to React EventSource without WebSocket handshake overhead.
+              <p className="small mb-0" style={{ color: 'var(--text-secondary)', fontSize: '0.80rem', lineHeight: 1.5 }}>
+                Pushes live worker progress over standard HTTP <code className="code-font" style={{ fontSize: '0.74rem' }}>text/event-stream</code> directly to React EventSource, eliminating WebSocket protocol complexity.
               </p>
             </div>
           </div>
           <div className="col-md-4">
             <div className="glass-panel p-3 h-100">
-              <div className="d-flex align-items-center gap-2 mb-1">
-                <ShieldCheck size={16} style={{ color: 'var(--brand-purple)' }} />
-                <h6 className="fw-bold mb-0 small" style={{ color: 'var(--text-primary)' }}>Apache PDFBox 3.x Extraction</h6>
+              <div className="d-flex align-items-center gap-2 mb-2">
+                <ShieldCheck size={16} style={{ color: 'var(--brand-primary)' }} />
+                <h6 className="fw-bold mb-0 small text-uppercase code-font" style={{ color: 'var(--text-primary)', fontSize: '0.78rem' }}>
+                  Apache PDFBox 3.x Extraction
+                </h6>
               </div>
-              <p className="small mb-0" style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', lineHeight: 1.5 }}>
-                Positional document text extraction normalized before passing to OpenAI JSON schema.
+              <p className="small mb-0" style={{ color: 'var(--text-secondary)', fontSize: '0.80rem', lineHeight: 1.5 }}>
+                Parses PDF text streams into positional text arrays, normalizing candidate qualifications against relational 3NF job rubrics.
               </p>
             </div>
           </div>
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="border-top py-3 text-center small" style={{ background: 'var(--bg-nav)', borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}>
-        <div className="container d-flex flex-wrap align-items-center justify-content-between gap-2">
-          <span style={{ color: 'var(--text-nav)', fontWeight: '500' }}>HireScope AI &bull; Built by Ganesh Badar</span>
-          <span className="code-font" style={{ color: 'var(--text-muted)', fontSize: '0.72rem' }}>
-            Spring Boot 3.3.4 &bull; Java 17 &bull; React 18 &bull; MySQL &bull; AWS S3 &bull; OpenAI
-          </span>
+      {/* Structured Footer with Compliance & System Links */}
+      <footer className="border-top py-3 text-center small mt-4" style={{ background: 'var(--bg-nav)', borderColor: 'var(--border-color)', color: 'var(--text-secondary)' }}>
+        <div className="container d-flex flex-wrap align-items-center justify-content-between gap-3">
+          <div className="d-flex align-items-center gap-3">
+            <span style={{ color: 'var(--text-primary)', fontWeight: '600', fontSize: '0.82rem' }}>HireScope ATS</span>
+            <span className="code-font text-muted" style={{ fontSize: '0.74rem' }}>v1.0.0-PROD</span>
+          </div>
+
+          <div className="d-flex flex-wrap align-items-center gap-3">
+            <button
+              onClick={() => setIsDomainModalOpen(true)}
+              className="btn btn-link p-0 text-decoration-none small text-muted"
+              style={{ fontSize: '0.76rem' }}
+            >
+              Custom Domain
+            </button>
+            <span className="text-muted">&bull;</span>
+            <button
+              onClick={() => setIsPrivacyModalOpen(true)}
+              className="btn btn-link p-0 text-decoration-none small text-muted"
+              style={{ fontSize: '0.76rem' }}
+            >
+              Candidate Privacy Policy
+            </button>
+            <span className="text-muted">&bull;</span>
+            <button
+              onClick={() => setIsTermsModalOpen(true)}
+              className="btn btn-link p-0 text-decoration-none small text-muted"
+              style={{ fontSize: '0.76rem' }}
+            >
+              Terms of Service
+            </button>
+            <span className="text-muted">&bull;</span>
+            <button
+              onClick={() => setIsArchModalOpen(true)}
+              className="btn btn-link p-0 text-decoration-none small text-muted"
+              style={{ fontSize: '0.76rem' }}
+            >
+              Architecture Guide
+            </button>
+          </div>
+
+          <div className="code-font" style={{ color: 'var(--text-muted)', fontSize: '0.72rem' }}>
+            Spring Boot 3.3.4 &bull; Java 17 &bull; React 18 &bull; MySQL 8.0 &bull; W3C SSE
+          </div>
         </div>
       </footer>
 
-      {/* Architecture & Interview Guide Modal */}
+      {/* Modals */}
       <ArchitectureModal
         isOpen={isArchModalOpen}
         onClose={() => setIsArchModalOpen(false)}
+      />
+      <CustomDomainModal
+        isOpen={isDomainModalOpen}
+        onClose={() => setIsDomainModalOpen(false)}
+      />
+      <PrivacyPolicyModal
+        isOpen={isPrivacyModalOpen}
+        onClose={() => setIsPrivacyModalOpen(false)}
+      />
+      <TermsModal
+        isOpen={isTermsModalOpen}
+        onClose={() => setIsTermsModalOpen(false)}
       />
     </div>
   );
