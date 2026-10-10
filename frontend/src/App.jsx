@@ -4,7 +4,6 @@ import JobSelector from './components/JobSelector';
 import ResumeUploader from './components/ResumeUploader';
 import EvaluationResultCard from './components/EvaluationResultCard';
 import ArchitectureModal from './components/ArchitectureModal';
-import CustomDomainModal from './components/CustomDomainModal';
 import PrivacyPolicyModal from './components/PrivacyPolicyModal';
 import TermsModal from './components/TermsModal';
 import {
@@ -14,7 +13,7 @@ import {
   subscribeToEvaluationStream,
   SAMPLE_JOBS
 } from './services/api';
-import { ShieldCheck, Activity, Cpu, Key, FileCheck2, Globe, Layers, Server } from 'lucide-react';
+import { ShieldCheck, Activity, Cpu, Key, FileCheck2, Layers, Server } from 'lucide-react';
 
 export default function App() {
   const [jobs, setJobs] = useState(SAMPLE_JOBS);
@@ -28,7 +27,6 @@ export default function App() {
 
   // Modal Visibility States
   const [isArchModalOpen, setIsArchModalOpen] = useState(false);
-  const [isDomainModalOpen, setIsDomainModalOpen] = useState(false);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isTermsModalOpen, setIsTermsModalOpen] = useState(false);
 
@@ -138,7 +136,6 @@ export default function App() {
       <Navbar
         isBackendLive={isBackendLive}
         onOpenArchitecture={() => setIsArchModalOpen(true)}
-        onOpenDomain={() => setIsDomainModalOpen(true)}
         onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
         onOpenTerms={() => setIsTermsModalOpen(true)}
         theme={theme}
@@ -280,14 +277,6 @@ export default function App() {
 
           <div className="d-flex flex-wrap align-items-center gap-3">
             <button
-              onClick={() => setIsDomainModalOpen(true)}
-              className="btn btn-link p-0 text-decoration-none small text-muted"
-              style={{ fontSize: '0.76rem' }}
-            >
-              Custom Domain
-            </button>
-            <span className="text-muted">&bull;</span>
-            <button
               onClick={() => setIsPrivacyModalOpen(true)}
               className="btn btn-link p-0 text-decoration-none small text-muted"
               style={{ fontSize: '0.76rem' }}
@@ -322,10 +311,6 @@ export default function App() {
       <ArchitectureModal
         isOpen={isArchModalOpen}
         onClose={() => setIsArchModalOpen(false)}
-      />
-      <CustomDomainModal
-        isOpen={isDomainModalOpen}
-        onClose={() => setIsDomainModalOpen(false)}
       />
       <PrivacyPolicyModal
         isOpen={isPrivacyModalOpen}

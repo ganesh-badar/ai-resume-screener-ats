@@ -1,10 +1,9 @@
 import React from 'react';
-import { FileCheck2, Layers, Globe, Shield, Scale, Sun, Moon } from 'lucide-react';
+import { FileCheck2, Layers, Shield, Scale, Sun, Moon } from 'lucide-react';
 
 export default function Navbar({
   isBackendLive,
   onOpenArchitecture,
-  onOpenDomain,
   onOpenPrivacy,
   onOpenTerms,
   theme,
@@ -68,17 +67,6 @@ export default function Navbar({
                 <span className="d-none d-md-inline">Light</span>
               </>
             )}
-          </button>
-
-          {/* Custom Domain Trigger */}
-          <button
-            onClick={onOpenDomain}
-            className="btn btn-sm btn-brand-outline d-flex align-items-center gap-1 py-1 px-2"
-            style={{ fontSize: '0.76rem' }}
-            title="Custom Domain & DNS Status"
-          >
-            <Globe size={13} style={{ color: 'var(--brand-primary)' }} />
-            <span className="d-none d-sm-inline">Domain</span>
           </button>
 
           {/* Architecture Modal Trigger */}
