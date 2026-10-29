@@ -1,59 +1,7 @@
-:root {
-  /* ========================================================
-     LIGHT MODE: Obsidian Precision — Light Variant
-     ======================================================== */
-  --bg-primary: #F8FAFC;
-  --bg-nav: #FFFFFF;
-  --bg-card: #FFFFFF;
-  --bg-subtle: #F1F5F9;
-  --bg-inset: #E2E8F0;
-  --border-color: #E2E8F0;
-  --border-subtle: #CBD5E1;
-  --border-strong: #94A3B8;
-
-  --text-primary: #0F172A;
-  --text-nav: #334155;
-  --text-secondary: #475569;
-  --text-muted: #64748B;
-
-  /* Precision Cobalt Accent */
-  --brand-primary: #2563EB;
-  --brand-primary-hover: #1D4ED8;
-  --brand-navy: #0F172A;
-  --brand-navy-hover: #1E293B;
-  --brand-subtle: rgba(37, 99, 235, 0.08);
-  --brand-border: rgba(37, 99, 235, 0.25);
-
-  --card-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.08), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
-  --card-shadow-hover: 0 4px 12px -2px rgba(15, 23, 42, 0.12);
-
-  --dropzone-bg: #FFFFFF;
-  --dropzone-border: #94A3B8;
-  --input-bg: #FFFFFF;
-  --input-border: #CBD5E1;
-
-  --modal-bg: #FFFFFF;
-  --modal-header-bg: #F8FAFC;
-  --modal-backdrop: rgba(15, 23, 42, 0.75);
-  --btn-close-filter: none;
-
-  --code-bg-warn: #FEF3C7;
-  --code-text-warn: #92400E;
-  --code-bg-info: #E0F2FE;
-  --code-text-info: #0369A1;
-  --code-bg-accent: #F1F5F9;
-  --code-text-accent: #0F172A;
-  --code-bg-success: #DCFCE7;
-  --code-text-success: #166534;
-
-  --status-emerald: #10B981;
-  --status-amber: #D97706;
-  --status-rose: #DC2626;
-}
-
+:root,
 [data-theme="dark"] {
   /* ========================================================
-     DARK MODE: Obsidian Velvet (#17151C → #E2DDE7 ramp)
+     DEFAULT THEME: Obsidian Velvet (#17151C → #E2DDE7 ramp)
      ======================================================== */
   --bg-primary: #17151C;
   --bg-nav: #17151C;
@@ -67,15 +15,22 @@
   --text-primary: #E2DDE7;
   --text-nav: #AAA2B3;
   --text-secondary: #AAA2B3;
-  --text-muted: #716879;
+  --text-muted: #AAA2B3;
 
-  /* Accent & Surfaces */
-  --brand-primary: #2563EB;
-  --brand-primary-hover: #60A5FA;
-  --brand-navy: #292531;
-  --brand-navy-hover: #45404F;
-  --brand-subtle: rgba(37, 99, 235, 0.12);
-  --brand-border: rgba(37, 99, 235, 0.32);
+  /* Accent & Action Tokens (Obsidian Velvet ramp) */
+  --brand-primary: #AAA2B3;
+  --brand-primary-hover: #E2DDE7;
+  --brand-navy: #45404F;
+  --brand-navy-hover: #716879;
+  --brand-subtle: rgba(170, 162, 179, 0.14);
+  --brand-border: rgba(170, 162, 179, 0.32);
+
+  --btn-action-bg: #AAA2B3;
+  --btn-action-text: #17151C;
+  --btn-action-hover: #E2DDE7;
+  --btn-solid-bg: #45404F;
+  --btn-solid-text: #E2DDE7;
+  --btn-solid-hover: #716879;
 
   --card-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.6);
   --card-shadow-hover: 0 8px 24px 0 rgba(0, 0, 0, 0.75);
@@ -92,16 +47,75 @@
 
   --code-bg-warn: rgba(217, 119, 6, 0.15);
   --code-text-warn: #FCD34D;
-  --code-bg-info: rgba(37, 99, 235, 0.12);
-  --code-text-info: #93BBFD;
+  --code-bg-info: rgba(170, 162, 179, 0.12);
+  --code-text-info: #E2DDE7;
   --code-bg-accent: rgba(255, 255, 255, 0.08);
-  --code-text-accent: #E2E8F0;
+  --code-text-accent: #E2DDE7;
   --code-bg-success: rgba(16, 185, 129, 0.15);
   --code-text-success: #6EE7B7;
 
   --status-emerald: #34D399;
   --status-amber: #FBBF24;
   --status-rose: #F87171;
+}
+
+[data-theme="light"] {
+  /* ========================================================
+     LIGHT MODE VARIANT
+     ======================================================== */
+  --bg-primary: #F8FAFC;
+  --bg-nav: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F1F5F9;
+  --bg-inset: #E2E8F0;
+  --border-color: #E2E8F0;
+  --border-subtle: #CBD5E1;
+  --border-strong: #94A3B8;
+
+  --text-primary: #17151C;
+  --text-nav: #292531;
+  --text-secondary: #45404F;
+  --text-muted: #716879;
+
+  --brand-primary: #45404F;
+  --brand-primary-hover: #292531;
+  --brand-navy: #17151C;
+  --brand-navy-hover: #292531;
+  --brand-subtle: rgba(69, 64, 79, 0.08);
+  --brand-border: rgba(69, 64, 79, 0.25);
+
+  --btn-action-bg: #292531;
+  --btn-action-text: #E2DDE7;
+  --btn-action-hover: #17151C;
+  --btn-solid-bg: #45404F;
+  --btn-solid-text: #E2DDE7;
+  --btn-solid-hover: #292531;
+
+  --card-shadow: 0 1px 3px 0 rgba(23, 21, 28, 0.08);
+  --card-shadow-hover: 0 4px 12px -2px rgba(23, 21, 28, 0.12);
+
+  --dropzone-bg: #FFFFFF;
+  --dropzone-border: #CBD5E1;
+  --input-bg: #FFFFFF;
+  --input-border: #CBD5E1;
+
+  --modal-bg: #FFFFFF;
+  --modal-header-bg: #F8FAFC;
+  --modal-backdrop: rgba(23, 21, 28, 0.75);
+  --btn-close-filter: none;
+
+  --code-bg-warn: #FEF3C7;
+  --code-text-warn: #92400E;
+  --code-bg-info: #EDE9FE;
+  --code-text-info: #45404F;
+  --code-bg-accent: #F1F5F9;
+  --code-text-accent: #17151C;
+  --code-bg-success: #DCFCE7;
+  --code-text-success: #166534;
+
+  --status-emerald: #10B981;
+  --status-amber: #D97706;
+  --status-rose: #DC2626;
 }
 
 body {
@@ -185,9 +199,9 @@ h1, h2, h3, .brand-font {
    SOLID BUTTONS (4px radius, no gradients, no pills)
    ======================================================== */
 .btn-brand-solid {
-  background: var(--brand-navy);
-  color: #FFFFFF !important;
-  border: 1px solid var(--brand-navy);
+  background: var(--btn-solid-bg, var(--brand-navy));
+  color: var(--btn-solid-text, #E2DDE7) !important;
+  border: 1px solid var(--btn-solid-bg, var(--brand-navy));
   border-radius: 4px;
   font-weight: 600;
   padding: 10px 18px;
@@ -196,9 +210,9 @@ h1, h2, h3, .brand-font {
 }
 
 .btn-brand-solid:hover {
-  background: var(--brand-navy-hover);
-  border-color: var(--brand-navy-hover);
-  color: #FFFFFF !important;
+  background: var(--btn-solid-hover, var(--brand-navy-hover));
+  border-color: var(--btn-solid-hover, var(--brand-navy-hover));
+  color: var(--btn-solid-text, #E2DDE7) !important;
 }
 
 .btn-brand-solid:disabled {
@@ -207,9 +221,9 @@ h1, h2, h3, .brand-font {
 }
 
 .btn-brand-action {
-  background: var(--brand-primary);
-  color: #FFFFFF !important;
-  border: 1px solid var(--brand-primary);
+  background: var(--btn-action-bg, var(--brand-primary));
+  color: var(--btn-action-text, #17151C) !important;
+  border: 1px solid var(--btn-action-bg, var(--brand-primary));
   border-radius: 4px;
   font-weight: 600;
   padding: 12px 20px;
@@ -218,9 +232,9 @@ h1, h2, h3, .brand-font {
 }
 
 .btn-brand-action:hover {
-  background: var(--brand-primary-hover);
-  border-color: var(--brand-primary-hover);
-  color: #FFFFFF !important;
+  background: var(--btn-action-hover, var(--brand-primary-hover));
+  border-color: var(--btn-action-hover, var(--brand-primary-hover));
+  color: var(--btn-action-text, #17151C) !important;
 }
 
 .btn-brand-action:disabled {

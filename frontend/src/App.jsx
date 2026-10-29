@@ -32,7 +32,7 @@ export default function App() {
 
   // Theme Management (Light vs Dark)
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('hirescope_theme') || 'light';
+    return localStorage.getItem('hirescope_theme') || 'dark';
   });
 
   useEffect(() => {
