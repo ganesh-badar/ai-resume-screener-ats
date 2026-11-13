@@ -133,6 +133,18 @@ export default function App() {
 
   return (
     <div className="d-flex flex-column min-vh-100" style={{ background: 'var(--bg-primary)' }}>
+      {/* Studio Specification Ribbon (Apple Pro Style) */}
+      <div 
+        className="text-center py-2 px-3 border-bottom" 
+        style={{ 
+          background: 'rgba(23, 21, 28, 0.96)', 
+          borderColor: 'var(--border-color)', 
+          fontSize: '0.78rem', 
+          color: 'var(--text-secondary)' 
+        }}
+      >
+        <span>W3C Server-Sent Events (SSE) &bull; Zero UI Blocking &bull; Spring Boot 3.3.4 &amp; PDFBox 3.x Real-time Ingestion Engine</span>
+      </div>
       <Navbar
         isBackendLive={isBackendLive}
         onOpenArchitecture={() => setIsArchModalOpen(true)}
